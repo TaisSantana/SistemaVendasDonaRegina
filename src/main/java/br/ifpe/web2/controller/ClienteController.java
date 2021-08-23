@@ -75,7 +75,7 @@ public class ClienteController {
 	System.out.println("ENTROU /efetuarLogin");
 	if (cliente.getApelido().equals("admin") && cliente.getSenha().equals("adm123")) {
 		session.setAttribute("usuarioLogado", cliente);
-		return "redirect:/exibirFormProduto";
+		return "redirect:/exibirProdutosVenda";
 	} else {
 	ra.addFlashAttribute("mensagemErro", "Usuário/senha inválidos"); 
 		return "redirect:/paginaInicial";

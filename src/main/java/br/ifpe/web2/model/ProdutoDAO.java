@@ -16,6 +16,8 @@ public interface ProdutoDAO extends JpaRepository<Produto, Integer> {
 	
 	Page<Produto> findByCategoriaIsNull(Pageable pageable);
 	
+	Produto findByCodigo(Integer codigo);
+	
 	List<Produto> findByNomeStartingWithAndEstoqueGreaterThan(
 			String nome, int estoque);
 
