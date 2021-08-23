@@ -59,15 +59,28 @@ public class ClienteController {
 		return "redirect:/listarClientes";
 	}
 	
+	//-------
+	@GetMapping("/paginaInicial")
+	public String exibirPaginaInicial() {
+		return "index";
+	}
+	
+	@GetMapping("/acessoNegado")
+	public String exibirAcessoNegado() {
+		return "acesso-negado";
+	}
+	
 	@PostMapping("/efetuarLogin")
 	public String efetuarLogin(Cliente cliente, RedirectAttributes ra, HttpSession session) {
+	System.out.println("ENTROU /efetuarLogin");
 	if (cliente.getApelido().equals("admin") && cliente.getSenha().equals("adm123")) {
 		session.setAttribute("usuarioLogado", cliente);
+		return "redirect:/exibirFormProduto";
 	} else {
-	ra.addFlashAttribute("mensagemErro", "Usu·rio/senha inv·lidos"); 
-		return "redirect:/";
+	ra.addFlashAttribute("mensagemErro", "Usu√°rio/senha inv√°lidos"); 
+		return "redirect:/paginaInicial";
 	}
-		return "redirect:/tela-inicial";
+		
 	}
 	
 	@PostMapping("/logout")

@@ -7,7 +7,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 public class AutorizadorInterceptor implements HandlerInterceptor {
 	
-	private static final String[] RECURSOS_LIVRES = {"/","/login","/logout","/acesso-negado"};
+	private static final String[] RECURSOS_LIVRES = {"/","/logout","/acesso-negado","/efetuarLogin","/paginaInicial"};
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request,
@@ -15,16 +15,20 @@ public class AutorizadorInterceptor implements HandlerInterceptor {
 		
 		for (String recurso: RECURSOS_LIVRES) {
 			if (request.getRequestURL().toString().endsWith(recurso)) {
+				System.out.println(recurso +"- TERMINA COM RECURSO.");
 				return true;
 			}
 		}
 		
 		if (request.getSession().getAttribute("usuarioLogado") == null) {
-		request.getRequestDispatcher("/acesso-negado")
-		.forward(request, response); // redirecionar para outra página
+		request.getRequestDispatcher("redirect:/paginaInicial")
+		.forward(request, response); // redirecionar para outra pï¿½gina
+			System.out.println("USUARIOLOGADO == NULL");
 			return false;
 		} else {
+			System.out.println("USUARIOLOGADO DIF NULL");
 			return true;
 		}
 	}
+	
 }
