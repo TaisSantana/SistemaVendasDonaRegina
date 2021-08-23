@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header :: headerBlock">
+</head>
+<body>
+
+	<div th:replace="header :: navBar" ></div>
+
+	<div th:if="${mensagemErro}" th:text="${mensagemErro}"></div>
+	<form action="/efetuarLogin" method="post" th:object="${cliente}">
+		<input name="apelido" placeholder="Usuário" />
+		<input type="password" name="senha" placeholder="Senha" />
+		<button class="btn btn-primary btn-block">Entrar</button>
+	</form>
+</body>
+</html>
