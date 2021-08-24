@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header :: headerBlock">
+</head>
+<body>
+	<div th:replace="header :: navBar" ></div>
+	<div class="contatiner col-sm-12 col-md-6 col-md-offset-2">
+	<h2>Lista Vendas</h2>
+		<table class="table table-striped table-bordered table-sm">
+			
+			<thead class="table-success">
+	
+				<tr>
+					<th>Nome do Cliente</th>
+					<th>Nome do Produto</th>
+					<th>Valor Total</th>
+					<th>Data Realização</th>
+				</tr>
+			</thead>
+			<tr  th:each="venda : ${lista}">
+				<td th:text="${venda.cliente.nomeCompleto}"></td>
+				<td th:text="${venda.produto.nome}"></td>
+				<th:block th:with="var = ${venda.produto.preco * venda.quantidade}">
+					<td th:text="${var}"></td>
+				</th:block>
+				<td th:text="${venda.dataVenda}"></td>
+				
+			</tr>
+		</table>
+		<hr />
+		
+	</div>
+</body>
+</html>

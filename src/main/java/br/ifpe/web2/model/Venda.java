@@ -1,5 +1,6 @@
 package br.ifpe.web2.model;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
@@ -18,7 +19,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Venda {
 	@Id @GeneratedValue(strategy =GenerationType.AUTO)
 	private Integer codigo;
-	@NotBlank(message = "Erro: Venda sem produto!")
 	@ManyToOne
 	private Produto produto;
 	@Min(value = 1, message = "Quantidade mínima: 1 unidade!")
@@ -26,7 +26,6 @@ public class Venda {
 	@ManyToOne
 	@NotNull(message = "Cliente deve ser selecionado")
 	private Cliente cliente;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate dataVenda;
 	public Integer getCodigo() {
 		return codigo;
@@ -55,8 +54,8 @@ public class Venda {
 	public LocalDate getDataVenda() {
 		return dataVenda;
 	}
-	public void setDataVenda(LocalDate dataVenda) {
-		this.dataVenda = dataVenda;
+	public void setDataVenda(LocalDate formatarData) {
+		this.dataVenda = formatarData;
 	}
 	
 	
