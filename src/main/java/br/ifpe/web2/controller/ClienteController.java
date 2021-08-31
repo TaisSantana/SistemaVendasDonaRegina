@@ -23,6 +23,7 @@ public class ClienteController {
 	
 	@GetMapping("/listarClientes")
 	public String exibirLista(Model model) {
+		//model atua dentro do request, acaba no controller que ele ta
 		model.addAttribute("lista", this.clienteService.listarTodos(Sort.by("nomeCompleto")));
 		return "cliente/cliente-list";
 	}
@@ -72,7 +73,6 @@ public class ClienteController {
 	
 	@PostMapping("/efetuarLogin")
 	public String efetuarLogin(Cliente cliente, RedirectAttributes ra, HttpSession session) {
-	System.out.println("ENTROU /efetuarLogin");
 	if (cliente.getApelido().equals("admin") && cliente.getSenha().equals("adm123")) {
 		session.setAttribute("usuarioLogado", cliente);
 		return "redirect:/exibirProdutosVenda";

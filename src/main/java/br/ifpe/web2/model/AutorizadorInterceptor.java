@@ -21,9 +21,8 @@ public class AutorizadorInterceptor implements HandlerInterceptor {
 		}
 		
 		if (request.getSession().getAttribute("usuarioLogado") == null) {
-		request.getRequestDispatcher("redirect:/paginaInicial")
-		.forward(request, response); // redirecionar para outra p�gina
 			System.out.println("USUARIOLOGADO == NULL");
+				request.getRequestDispatcher("redirect:/paginaInicial").forward(request, response); // redirecionar para outra p�gina			
 			return false;
 		} else {
 			System.out.println("USUARIOLOGADO DIF NULL");

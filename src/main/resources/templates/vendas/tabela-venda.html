@@ -8,13 +8,14 @@
 	<div th:replace="header :: navBar" ></div>
 	<br/><br/>
 	<div class="container col-sm-12 col-md-6 col-md-offset-2" >
-		<form action="/registrarVenda" method="post" th:object="${venda}" enctype="multipart/form-data">
+		<form id="formCadVenda" action="/registrarVenda" method="post" th:object="${venda}" enctype="multipart/form-data">
 			<a href="/exibirProdutosVenda" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Voltar para a lista de Produtos para Venda</a><br/><br/><br/>
 			<input type="hidden" th:field="*{codigo}">
+			<input type="hidden" th:field="*{produto}" th:value="${produto}">
 			<label for="nome">Nome Produto:</label>		
-			<b><a th:text="${produto.nome}"></a></b><br/>
+			<b><span th:text="${produto.nome}"></span></b><br/>
 			<label for="nome">Preço Produto(R$):</label>		
-			<b><a th:text="${produto.preco}"></a></b>
+			<b><span th:text="${produto.preco}"></span></b>
 			
 			<div class="form-group">
 				<label for="quantidade">Quantidade</label> 
@@ -35,11 +36,21 @@
 					<li th:each="erro : ${#fields.errors('*')}" th:text="${erro}" class="alert-danger">
 				</ul>
 			</div>
-			<button type="submit" class="btn btn-primary">Registrar Venda</button>
+			<button type="button" id="btnCadVenda" class="btn btn-primary">Registrar Venda</button>
 			<hr/>
 			
 			
 		</form>
 	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>	
+	<script>
+				$("#btnCadVenda").click(function(){                        
+	                $("#formCadVenda").submit();
+	                    
+	                    
+	            });
+	
+	</script>
 </body>
 </html>
