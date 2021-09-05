@@ -11,6 +11,8 @@ public class Config implements WebMvcConfigurer{
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
+		//qual tipo de servico q adiciona a esse interceptador .addpattern o que é .addPathPatterns(null)
+		//xml é mais antigo
 		registry.addInterceptor(new AutorizadorInterceptor());
 	}
 }
